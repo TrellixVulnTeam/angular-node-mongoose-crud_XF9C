@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-mongodb-jwt-auth-api",
+  "version": "1.0.0",
+  "description": "In this module we'll go through an example of how to implement JWT (JSON Web Token) authentication  in a Node.js + MongoDB API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "author": {
+    "name": "Harsh Kagathara",
+    "email": "harshkagu29@gmail.com",
+    "url": "https://infusion-infotech.com/"
+  },
+  "keywords": [
+    "Node.js MongoDB – User Authentication & Authorization example with JWT & Mongoose",
+    "Build Secure (JWT) Token Based Authentication API with Node"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.13",
+    "nodemon": "^2.0.7"
+  }
+}

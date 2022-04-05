@@ -1,0 +1,128 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">Employee Data List </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary" id="add_button" (click)="showModel()" style="margin-bottom: 15px;">Add New</button>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Birth Date</th>
+                        <th>Marital Status</th>
+                        <th>Blood Group</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+               
+                    <tbody>
+                        <tr *ngFor="let employee of Employee; let i = index">
+                          <td>{{employee.name}}</td>
+                          <td>{{employee.birth_date}}</td>
+                          <td>{{employee.marital_status}}</td>
+                          <td>{{employee.blood_group}}</td>
+                          <td>{{employee.email}}</td>
+                          <td class="text-center edit-block">
+                            <span class="edit" >
+                              <button type="button"  id="employee._id" class="btn btn-success btn-sm mr-3" data-toggle="modal"
+                              data-target="#myModal" (click)="opneModel(employee._id)" >Edit</button>
+                            </span>
+                            <span class="delete" >
+                              <button type="button" class="btn btn-danger btn-sm" (click)="removeEmployee(employee, i)">Delete</button>
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"> Add Data hare</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form   [formGroup]="AddEmployee" (ngSubmit)="submitAddEmployeeForm()" style="padding-left: 15px;">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Name (As per Addhar Card)</label>
+                            <input type="text" id="name" name="name" class="form-control"  formControlName="name"  [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                            <div *ngIf="submitted && f['name'].invalid" class="text-danger">
+                                <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+                             </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Name of Father</label>
+                                <input type="text" id="fname" name="fname" class="form-control" formControlName="fname"  [ngClass]="{ 'is-invalid': submitted && f['fname'].errors }">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Gender :</label>
+                                <select class="form-control"   formControlName="gender"  [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }"  id="gender" name="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="-">-</option>
+                                </select>
+                              
+                            <br />
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Date of Birth</label>
+                            <input name="birth_date" id="birth_date" type="text"  class="validate[required] form-control" placeholder=""   formControlName="birth_date"  [ngClass]="{ 'is-invalid': submitted && f['birth_date'].errors }"/>
+                       
+                        </div>
+                    </div>
+
+                    <div id=msg></div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Marital Status</label>
+                            <select class="form-control"   formControlName="marital_status"  [ngClass]="{ 'is-invalid': submitted && f['marital_status'].errors }"  id="marital_status" name="marital_status">
+                                <option value="married">Married</option>
+                                <option value="unmarried">Unmarried</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Blood Group</label>
+                            <input type="text" id="blood_group" name="blood_group" class="form-control"   formControlName="blood_group"  [ngClass]="{ 'is-invalid': submitted && f['blood_group'].errors }" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Contact Number</label>
+                            <input type="text" id="contact_number" name="contact_number" class="form-control"   formControlName="contact_number"  [ngClass]="{ 'is-invalid': submitted && f['contact_number'].errors }" >
+                        </div>
+                        <div class="col-sm-6">
+                            <label>E-Mail Id </label>
+                            <input type="text" id="email" name="email" class="form-control"   formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" >
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12 form-group">
+                            <input type="hidden" name="id" id="id" value="add"  formControlName="id"  [ngClass]="{ 'is-invalid': submitted && f['id'].errors }"/>
+                            <input type="hidden" name="operation" id="operation" value="add"  formControlName="operation"  [ngClass]="{ 'is-invalid': submitted && f['operation'].errors }"/>
+                            <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        </div>
+                        <div class="col-md-6 col-xs-12 form-group">
+                            <button type="button" class="btn btn-danger btn-block"  data-dismiss="modal">Close </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            
+        </div>
+    </div>
+</div>
